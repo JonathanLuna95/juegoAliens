@@ -10,7 +10,7 @@ public class Alien {
 	private double precioExtremidad;
 	private double precioOjo;
 	private double precioCuerpo;
-	private double precioTotal;
+	private double precioTotal = 0;
 
 	public Alien(int tamanio, String color) {
 
@@ -74,6 +74,7 @@ public class Alien {
 		System.out.println("Precio extremidad: " + precioExtremidad);
 		System.out.println("Precio ojo: " + precioOjo);
 		System.out.println("Precio cuerpo: " + precioCuerpo);
+		System.out.println("Precio total: " + precioTotal);
 	}
 
 	public boolean agregarBrazos(int cantidad) {
