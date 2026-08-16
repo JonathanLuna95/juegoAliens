@@ -10,6 +10,7 @@ public class Alien {
 	private double precioExtremidad;
 	private double precioOjo;
 	private double precioCuerpo;
+	private double precioTotal;
 
 	public Alien(int tamanio, String color) {
 
@@ -60,6 +61,10 @@ public class Alien {
 		return precioCuerpo;
 	}
 
+	public double getPrecioTotal() {
+		return precioTotal;
+	}
+
 	public void imprimir() {
 		System.out.println("Tamaño: " + tamanio);
 		System.out.println("Color: " + color);
@@ -75,20 +80,48 @@ public class Alien {
 
 		if (numeroBrazos + numeroPies + cantidad <= 10) {
 			numeroBrazos = numeroBrazos + cantidad;
+			calcularPrecioTotal();
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public boolean agregarPiernas(int cantidad) {
 
 		if (numeroBrazos + numeroPies + cantidad <= 10) {
 			numeroPies = numeroPies + cantidad;
+			calcularPrecioTotal();
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public boolean agregarOjos(int cantidad) {
+
+		int limiteOjos;
+
+		if (tamanio <= 10) {
+			limiteOjos = 3;
+		} else if (tamanio <= 20) {
+			limiteOjos = 5;
+		} else {
+			limiteOjos = 7;
+		}
+
+		if (numeroOjos + cantidad <= limiteOjos) {
+			numeroOjos = numeroOjos + cantidad;
+			calcularPrecioTotal();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void calcularPrecioTotal() {
+
+		precioTotal = precioCuerpo + ((numeroBrazos + numeroPies) * precioExtremidad) + (numeroOjos * precioOjo);
 	}
 
 }

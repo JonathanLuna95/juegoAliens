@@ -86,5 +86,56 @@ public class TestAlienJunit {
 		assertEquals(6, alien.getNumeroBrazos());
 		assertEquals(0, alien.getNumeroPies());
 	}
+	
+	@Test
+	public void testAgregarOjosValido() {
+
+		Alien alien = new Alien(10, "Verde");
+
+		boolean resultado = alien.agregarOjos(3);
+
+		assertEquals(true, resultado);
+		assertEquals(3, alien.getNumeroOjos());
+	}
+	
+	@Test
+	public void testExcedeLimiteOjos() {
+
+		Alien alien = new Alien(10, "Azul");
+
+		boolean resultado = alien.agregarOjos(4);
+
+		assertEquals(false, resultado);
+		assertEquals(0, alien.getNumeroOjos());
+	}
+	
+	@Test
+	public void testCalcularPrecioTotal() {
+
+		Alien alien = new Alien(10, "Verde");
+
+		alien.agregarBrazos(2);
+		alien.agregarPiernas(2);
+		alien.agregarOjos(3);
+
+		assertEquals(7.5, alien.getPrecioTotal(), 0.0001);
+	}
+	
+	@Test
+	public void testActualizacionAutomaticaPrecioTotal() {
+
+		Alien alien = new Alien(10, "Azul");
+
+		alien.agregarBrazos(2);
+		assertEquals(4.0, alien.getPrecioTotal(), 0.0001);
+
+		alien.agregarPiernas(2);
+		assertEquals(6.0, alien.getPrecioTotal(), 0.0001);
+
+		alien.agregarOjos(2);
+		assertEquals(7.0, alien.getPrecioTotal(), 0.0001);
+	}
+	
+	
 
 }
